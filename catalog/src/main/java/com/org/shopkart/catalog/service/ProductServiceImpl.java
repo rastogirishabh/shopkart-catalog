@@ -38,6 +38,7 @@ public class ProductServiceImpl implements ProductService{
         productList.forEach(productEntity -> {
                     ProductResponseModel productResponseModel = new ProductResponseModel();
                     BeanUtils.copyProperties(productEntity,productResponseModel);
+                    //Fetching all objects from image table and then obtaining list of imageURLs.
                     productResponseModel.setImageURL(imageRepo.findByProductId(productEntity.getProductId())
                             .stream().map(productImageEntity->productImageEntity.getImageURL())
                             .collect(Collectors.toList())
